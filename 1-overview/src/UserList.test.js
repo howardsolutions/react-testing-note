@@ -1,9 +1,7 @@
 import { render, screen, within } from '@testing-library/react';
 import UserList from './UserList';
 
-// USING `data-testid`
-
-test('Render ONE row per user', () => {
+function renderComponent() {
   const users = [
     { name: 'john', email: 'john@example.com' },
     { name: 'jane', email: 'jane@example.com' },
@@ -11,6 +9,15 @@ test('Render ONE row per user', () => {
 
   // render the component
   render(<UserList users={users} />);
+
+  // return list of users for the 2nd test
+  return { users };
+}
+
+// USING `data-testid`
+
+test('Render ONE row per user', () => {
+  renderComponent();
 
   // Find all the rows in the table
   // const rows = screen.getAllByRole('row');
@@ -45,13 +52,7 @@ test('Render ONE row per user', () => {
 */
 
 test('Render the email and user name of each user in table row', () => {
-  const users = [
-    { name: 'john', email: 'john@example.com' },
-    { name: 'jane', email: 'jane@example.com' },
-  ];
-
-  // render the component
-  render(<UserList users={users} />);
+  const { users } = renderComponent();
 
   for (let user of users) {
     const name = screen.getByRole('cell', { name: user.name });
