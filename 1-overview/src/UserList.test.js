@@ -44,4 +44,20 @@ test('Render ONE row per user', () => {
 });
 */
 
-test('Render the email and name of each user', () => {});
+test('Render the email and user name of each user in table row', () => {
+  const users = [
+    { name: 'john', email: 'john@example.com' },
+    { name: 'jane', email: 'jane@example.com' },
+  ];
+
+  // render the component
+  render(<UserList users={users} />);
+
+  for (let user of users) {
+    const name = screen.getByRole('cell', { name: user.name });
+    const email = screen.getByRole('cell', { name: user.email });
+
+    expect(name).toBeInTheDocument();
+    expect(email).toBeInTheDocument();
+  }
+});
