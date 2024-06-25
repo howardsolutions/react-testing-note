@@ -46,7 +46,7 @@ We don't need to memorize all of them.
 
 - Elements CAN BE manually assigned a ROLE. Even trained engineers do this incorrectly
 
-- React Testing Lib prefer way of finding elements by role.
+- <strong> React Testing Lib prefer way of finding elements by role. </strong>
 
 For example:
 
@@ -59,6 +59,18 @@ ul, li => have ARIA ROLE of `list`
 `link` => a tag
 
 `textbox` => `input type = "text"`
+
+- With table
+
+thead => role: `rowgroup`
+
+tbody => role: `rowgroup`
+
+tr => role: row
+
+th => Role: columnheader
+
+td => role: cell
 
 ## Mocking Functions
 
@@ -113,3 +125,22 @@ expect(mock).toHaveBeenCalledWith({
 => This function will takes the HTML currently rendered by your component and creates a LINK to view that HTML in `Testing Playground` tool website.
 
 - Testing Playground will recommend the queries (function to find elements)
+
+## Query Function Escape Hatches
+
+- Sometimes, finding elements by ROLE (prefer approach) JUST DOEN"T WORK WELL!
+
+- TIP: DON'T OBSESS OVER getting the RIGHT QUERY
+
+- 2 Escape Hatches => Ways to find elements when preferred 'Role' approach DOESN'T WORK!
+
+1. `data-testid`
+
+👉 we have to modify our component (add the data-testid property to our component) for the purpose to do the test. => in my opinion, that's not good
+
+2. `container.querySelector()`
+
+```js
+// eslint-disable-next-line
+const rows = container.querySelectorAll('tbody tr');
+```
