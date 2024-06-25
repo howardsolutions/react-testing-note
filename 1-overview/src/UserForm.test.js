@@ -47,6 +47,7 @@ test('it calls onUserAdd when the form is submitted', async () => {
 
 // A touch on TDD - Test Driven Development. Write a failed test case first, and implement to fix in the code
 test('empties the 2 inputs when the form is submitted', async () => {
+  // append
   render(<UserForm onUserAdd={() => {}} />);
 
   const nameInput = screen.getByRole('textbox', { name: /name/i });
@@ -54,6 +55,7 @@ test('empties the 2 inputs when the form is submitted', async () => {
 
   const button = screen.getByRole('button');
 
+  // act
   await user.click(nameInput);
   await user.keyboard('jane');
 
@@ -62,6 +64,7 @@ test('empties the 2 inputs when the form is submitted', async () => {
 
   await user.click(button);
 
+  // assert
   expect(nameInput).toHaveValue('');
   expect(emailInput).toHaveValue('');
 });
