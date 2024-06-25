@@ -86,3 +86,18 @@ expect(mock).toHaveBeenCalledWith({
 
 // and expect to be called with appropriate arguments.
 ```
+
+## Querying Elements by Labels
+
+```html
+<label htmlFor="email">Enter your Email</label> <input id="email" />
+```
+
+- Normal HTML Stuff (not React specific)
+
+- If a labels 'for' attribute matches an Input 'id' => Clicking on the LABEL will FOCUS THE INPUT.
+
+=> Input can be Selected with this approaches.
+
+`screen.getByLabelText(/enter your email/i)` <br />
+`screen.getByRole('textbox', {name: /enter your email/i})`

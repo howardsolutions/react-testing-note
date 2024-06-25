@@ -16,7 +16,6 @@ test('it shows two inputs and a button', () => {
   expect(button).toBeInTheDocument();
 });
 
-// Work but not the best way!
 test('it calls onUserAdd when the form is submitted', async () => {
   // render component
   const mock = jest.fn();
@@ -45,6 +44,7 @@ test('it calls onUserAdd when the form is submitted', async () => {
   });
 });
 
+// Work but not the best way!
 /*
 test('it calls onUserAdd when the form is submitted', async () => {
   // render component
