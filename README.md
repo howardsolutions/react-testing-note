@@ -59,3 +59,30 @@ ul, li => have ARIA ROLE of `list`
 `link` => a tag
 
 `textbox` => `input type = "text"`
+
+## Mocking Functions
+
+- In english, 'mock' equal 'NOT REAL'
+
+- Fake function that DOESN"T do ANYTHING
+
+- Records WHENEVER it gets called, and the `arguments` it was called with.
+
+- Used VERY OFTEN when we need to make sure a Component CALLS a callback!
+
+Example:
+
+```javascript
+const mock = jest.fn();
+
+render(<SomeComponent onSubmit={mock} />);
+
+expect(mock).toHaveBeenCalled(); // expect to be called!
+
+expect(mock).toHaveBeenCalledWith({
+  name: 'john',
+  email: 'blabla@email.com',
+});
+
+// and expect to be called with appropriate arguments.
+```
