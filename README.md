@@ -146,3 +146,33 @@ const rows = container.querySelectorAll('tbody tr');
 ```
 
 ## Using `screen.debug()` to view all the current state of our code to make sure we're on the right path.
+
+## When we don't want to put plain text inside an element.
+
+## We need to Directly assigning an Accessible Name to an Element.
+
+```js
+function IconButons() {
+  return (
+    <div>
+      <button aria-label='sign in'>
+        <svg />
+      </button>
+
+      <button aria-label='sign out'>
+        <svg />
+      </button>
+    </div>
+  );
+}
+
+test('find elements based on label', () => {
+  render(<IconButtons />);
+
+  const signInButton = screen.getByRole('button', { name: /sign in/i });
+  const signOutButton = screen.getByRole('button', { name: /sign out/i });
+
+  expect(signInButton).toBeInTheDocument();
+  expect(signOutButton).toBeInTheDocument();
+});
+```
