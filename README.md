@@ -8,7 +8,7 @@
 
 3. Decide WHAT THE IMPORTANT PARTS of the component are?
 
-4. Write a TEST to make sure each part works as expected
+4. Write a TEST to make sure EACH PART WORKS AS EXPECTED!
 
 5. Run tests at the command line
 
@@ -101,3 +101,15 @@ expect(mock).toHaveBeenCalledWith({
 
 `screen.getByLabelText(/enter your email/i)` <br />
 `screen.getByRole('textbox', {name: /enter your email/i})`
+
+## Getting Help with Query Functions
+
+- The Problem: Memorizing ALL the query functions to Find Elements + Roles is HARD
+
+- To get help with finding a particular element, USE this HELPER function
+
+`screen.logTestingPlaygroundURL()`
+
+=> This function will takes the HTML currently rendered by your component and creates a LINK to view that HTML in `Testing Playground` tool website.
+
+- Testing Playground will recommend the queries (function to find elements)
