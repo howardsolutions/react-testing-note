@@ -144,3 +144,5 @@ expect(mock).toHaveBeenCalledWith({
 // eslint-disable-next-line
 const rows = container.querySelectorAll('tbody tr');
 ```
+
+## Using `screen.debug()` to view all the current state of our code to make sure we're on the right path.
