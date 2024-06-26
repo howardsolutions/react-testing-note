@@ -379,3 +379,37 @@ test('the form displays two buttons', () => {
   // expect(form).toContainRole('button', 4) 🚨 ❌
 });
 ```
+
+## MOST of testing is ABOUT FIGURING OUT CODE that other engineers wrote!
+
+## 1️⃣ How People Think Testing Works
+
+<details> 
+  <summary>Open to Read</summary>
+
+1. Write Code
+
+2. Immediately write tests with Perfect Knowledge of the Code.
+
+3. Everything is super easy and works the first time.
+
+</details>
+
+## 2️⃣ Testing in Reality
+
+<details> 
+  <summary>Open to Read</summary>
+
+1. Users complain to ur companies support team about a bug
+
+2. Support team gives a workaround to the bug
+
+3. Support team gets tired of the 1 million tickets being filed and tells a PM about the bug
+
+4. PM tells an Engineering manager that the bug needs to be fixed.
+
+5. Engineering manager teels engineer to fix the bug, probably without a lot of details
+
+6. You need to find the bug, fix it, and write `a test to confirm it is fixed`
+
+</details>

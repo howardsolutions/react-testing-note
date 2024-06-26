@@ -129,6 +129,7 @@ routes.get('/api/repositories/:owner/:name/contents/*', async (req, res) => {
     if (cachedResponse) {
       return res.json(JSON.parse(cachedResponse.value));
     }
+
     const { data } = await axios.get(process.env.UPSTREAM_API + req.url);
 
     await client.cachedResponse.create({
