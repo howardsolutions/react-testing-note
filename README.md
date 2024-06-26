@@ -325,3 +325,57 @@ test('favor findBy or findAllBy when data fetching - waiting for some elements t
   expect(element).toHaveLength(3);
 });
 ```
+
+## Write Custom Matcher
+
+### Code Example:
+
+```js
+import { screen, render, within } from '@testing-library/react';
+
+function FormData() {
+  return (
+    <div>
+      <button>GO BACK</button>
+
+      <form aria-label='form'>
+        <button>Save</button>
+        <button>Cancel</button>
+      </form>
+    </div>
+  );
+}
+
+/// Custom matcher
+function toContainRole(container, role, quantity = 1) {
+  const elements = within(container).queryAllByRole(role);
+
+  if (elements.length === quantity) {
+    return {
+      pass: true,
+    };
+  }
+
+  return {
+    pass: false,
+    message: () =>
+      `Expected to find ${quantity} ${role} elements. Found ${elements.length} instead.`,
+  };
+}
+// IMPORTANT PART to Receive the `container` prop inside the `toContainRole` function
+expect.extend({ toContainRole });
+
+test('the form displays two buttons', () => {
+  render(<FormData />);
+
+  const form = screen.getByRole('form');
+
+  // Before have custom matcher
+  // const buttons = within(form).getAllByRole("button");
+  // expect(buttons).toHaveLength(2);
+
+  // expect(form).toContainRole('button', 2) ✅
+  // expect(form).toContainRole('link', 0) ✅
+  // expect(form).toContainRole('button', 4) 🚨 ❌
+});
+```
