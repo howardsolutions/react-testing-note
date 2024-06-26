@@ -176,3 +176,114 @@ test('find elements based on label', () => {
   expect(signOutButton).toBeInTheDocument();
 });
 ```
+
+## Query Functions
+
+### Looking for a SINGLE Element? ==> Use: getBy, queryBy, findBy
+
+### Looking for a MULTIPLE Elements? ==> Use: getAllBy, queryAllBy, findAllBy
+
+### Code Example:
+
+```js
+import { render, screen } from '@testing-library-react';
+
+function ColorList() {
+  return (
+    <ul>
+      <li>Red</li>
+      <li>Blue</li>
+      <li>Green</li>
+    </ul>
+  );
+}
+```
+
+```js
+test('findBy, getBy, queryBy finding 0 element', async () => {
+  render(<ColorList />);
+  // getByRole
+  expect(() => screen.getByRole('textbox')).toThrow();
+
+  // queryByRole
+  expect(screen.queryByRole('textbox')).toEqual(null);
+
+  // findByRole
+  let errThrow = false;
+  try {
+    await screen.findByRole('textbox');
+  } catch (err) {
+    errThrow = true;
+  }
+  expect(errThrow).toBe(true);
+});
+
+test('getBy, queryBy, findBy when they find 1 element', async () => {
+  render(<ColorList />);
+
+  expect(screen.getByRole('list')).toBeInTheDocument();
+
+  expect(screen.queryByRole('list')).toBeInTheDocument();
+
+  expect(await screen.findByRole('list')).toBeInTheDocument();
+});
+
+test('getBy, queryBy, findBy when they find MORE THAN 1 element', async () => {
+  render(<ColorList />);
+  // getByRole
+  expect(() => screen.getByRole('listitem')).toThrow();
+
+  // queryByRole
+  expect(() => screen.queryByRole('listitem')).toThrow();
+
+  // findByRole
+  let errThrow = false;
+  try {
+    await screen.findByRole('listitem');
+  } catch (err) {
+    errThrow = true;
+  }
+  expect(errThrow).toBe(true);
+});
+
+test('getAllBy, queryAllBy, findAllBy', async () => {
+  render(<ColorList />);
+
+  expect(screen.getAllByRole('listitem')).toHaveLength(3);
+
+  expect(screen.queryAllByRole('listitem')).toHaveLength(3);
+
+  expect(await screen.findAllByRole('listitem')).toHaveLength(3);
+});
+```
+
+### WHEN to use Each?
+
+- Prove an element exists => Use: getBy, getAllBy
+
+Because when cannot get the element, these functions will throw an error, test will fail.
+
+```js
+test('favor using getBy to prove an element exists', () => {
+  render(<ColorList />);
+
+  const element = screen.getByRole('list');
+
+  expect(element).toBeInTheDocument(); 😁✅
+});
+```
+
+- Prove an element DOES NOT exist => Use: queryBy, queryAllBy
+
+```js
+test('favor using queryBy to prove an element does NOT exists', () => {
+  render(<ColorList />);
+
+  const element = screen.queryByRole('textbox'); // returned value : null
+
+  // expect(element).toBeNull()
+  expect(element).not.toBeInTheDocument();
+});
+```
+
+- Make sure an element eventually exists => Use: findBy, findAllBy (ASYNC Querries)
