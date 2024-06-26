@@ -287,3 +287,41 @@ test('favor using queryBy to prove an element does NOT exists', () => {
 ```
 
 - Make sure an element eventually exists => Use: findBy, findAllBy (ASYNC Querries)
+
+### Code Example:
+
+```js
+import { useState, useEffect } from 'react';
+
+function fakeFetchColors() {
+  return Promise.resolve(['red', 'green', 'blue']);
+}
+
+function LoadableColorList() {
+  const [colors, setColors] = useState([]);
+
+  useEffect(() => {
+    fakeFetchColors().then(setColors);
+  }, []);
+
+  return (
+    <ul>
+      {colors.map((c) => (
+        <li key={c}>{c}</li>
+      ))}
+    </ul>
+  );
+}
+
+render(<LoadableColorList />);
+```
+
+```js
+test('favor findBy or findAllBy when data fetching - waiting for some elements to show up!', async () => {
+  render(<LoadableColorList />);
+
+  const element = await screen.findAllByRole('listitem');
+
+  expect(element).toHaveLength(3);
+});
+```
