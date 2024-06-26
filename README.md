@@ -413,3 +413,32 @@ test('the form displays two buttons', () => {
 6. You need to find the bug, fix it, and write `a test to confirm it is fixed`
 
 </details>
+
+## A Process for Debugging
+
+## The Bug Fixing Process
+
+<details> 
+  1. Find the relevant components in the code base
+
+2. Figure out How the component is getting its data / state / props
+
+3. Use a debugger, console.log, or documentation to understand the Data
+
+4. Implement a fix
+
+5. Test the fix.
+</details>
+
+### Ways of Finding Relevant Components
+
+<details> 
+  <summary>Open to Read</summary>
+  1. React Dev Tools
+
+2. Search the codebase for text/icons/classNames that the component producing
+
+3. If an err is being thrown, look at the Stack trace
+
+4. Ask another engineer
+</details>
