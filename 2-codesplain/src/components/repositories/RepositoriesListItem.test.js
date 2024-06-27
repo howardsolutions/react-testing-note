@@ -26,6 +26,8 @@ function renderComponent() {
       <RepositoriesListItem repository={repository} />
     </MemoryRouter>
   );
+
+  return { repository };
 }
 
 const pause = () => {
@@ -36,13 +38,16 @@ const pause = () => {
   });
 };
 
-// describe('<RepositoriesListItem />', () => {
-//   test('shows a link to the github homepage for this repository', async () => {
-//     renderComponent();
+describe('<RepositoriesListItem />', () => {
+  test('shows a link to the github homepage for this repository', async () => {
+    const { repository } = renderComponent();
 
-//     await screen.findByRole('img', { name: 'Python' });
-//   });
-// });
+    await screen.findByRole('img', { name: 'Python' });
+
+    const link = screen.getByRole('link', { name: /github repository/i });
+    expect(link).toHaveAttribute('href', repository.html_url);
+  });
+});
 
 // When using module Mocking - it's terrible technique but it worked! :v
 // // the fileIcon Component causing the issue, we skipped importing that component!
