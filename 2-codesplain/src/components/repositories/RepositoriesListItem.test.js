@@ -19,8 +19,18 @@ function renderComponent() {
   );
 }
 
+const pause = () => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, 100);
+  });
+};
+
 describe('<RepositoriesListItem />', () => {
-  test('shows a link to the github homepage for this repository', () => {
+  test('shows a link to the github homepage for this repository', async () => {
     renderComponent();
+
+    await screen.findByRole('img', { name: 'Python' });
   });
 });
