@@ -39,6 +39,7 @@
         "web-vitals": "^2.1.4"
       },
       "devDependencies": {
+        "@types/jest": "^29.5.12",
         "autoprefixer": "^10.4.13",
         "postcss": "^8.4.19",
         "tailwindcss": "^3.2.4"
@@ -3975,9 +3976,9 @@
       }
     },
     "node_modules/@types/jest": {
-      "version": "29.2.3",
-      "resolved": "https://registry.npmjs.org/@types/jest/-/jest-29.2.3.tgz",
-      "integrity": "sha512-6XwoEbmatfyoCjWRX7z0fKMmgYKe9+/HrviJ5k0X/tjJWHGAezZOfYaxqQKuzG/TvQyr+ktjm4jgbk0s4/oF2w==",
+      "version": "29.5.12",
+      "resolved": "https://registry.npmjs.org/@types/jest/-/jest-29.5.12.tgz",
+      "integrity": "sha512-eDC8bTvT/QhYdxJAulQikueigY5AsdBRH2yDKW3yveW7svY3+DzN84/2NUgkw10RTiJbWqZrTtoGVdYlvFJdLw==",
       "dependencies": {
         "expect": "^29.0.0",
         "pretty-format": "^29.0.0"
@@ -21180,9 +21181,9 @@
       }
     },
     "@types/jest": {
-      "version": "29.2.3",
-      "resolved": "https://registry.npmjs.org/@types/jest/-/jest-29.2.3.tgz",
-      "integrity": "sha512-6XwoEbmatfyoCjWRX7z0fKMmgYKe9+/HrviJ5k0X/tjJWHGAezZOfYaxqQKuzG/TvQyr+ktjm4jgbk0s4/oF2w==",
+      "version": "29.5.12",
+      "resolved": "https://registry.npmjs.org/@types/jest/-/jest-29.5.12.tgz",
+      "integrity": "sha512-eDC8bTvT/QhYdxJAulQikueigY5AsdBRH2yDKW3yveW7svY3+DzN84/2NUgkw10RTiJbWqZrTtoGVdYlvFJdLw==",
       "requires": {
         "expect": "^29.0.0",
         "pretty-format": "^29.0.0"

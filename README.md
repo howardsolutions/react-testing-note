@@ -416,7 +416,7 @@ test('the form displays two buttons', () => {
 
 ## A Process for Debugging
 
-## The Bug Fixing Process
+## Overall - The Bug Fixing Process
 
 <details> 
   1. Find the relevant components in the code base
@@ -425,9 +425,10 @@ test('the form displays two buttons', () => {
 
 3. Use a debugger, console.log, or documentation to understand the Data
 
-4. Implement a fix
+4. Test the fix first (TDD - Test Driven Development) - the test is gonna failed!
 
-5. Test the fix.
+5. Implement a fix to pass the test.
+
 </details>
 
 ### Ways of Finding Relevant Components
@@ -441,4 +442,38 @@ test('the form displays two buttons', () => {
 3. If an err is being thrown, look at the Stack trace
 
 4. Ask another engineer
+</details>
+
+### Understanding the Data
+
+<details> 
+  <summary>Open to Read</summary>
+  1. Set a console.log to print out the data
+
+2. Set a debugger and manually inspect the data
+
+3. User React Dev Tools to view the props and state
+
+4. Watch network request log and inspect the API response
+</details>
+
+## Act() Warnings
+
+- Little frustrating because you need to understand 3-4 different topics to understand the warning.
+
+- Will occur frequently if you're doing DATA FETCHING in useEffect.
+
+### Important Items to understand Act() warnings
+
+<details> 
+  <summary>Open to READ</summary>
+
+1. Unexpected state updates in tests are BAD
+
+2. The act function defines a WINDOW in time, where state updates can an shoud OCCUR.
+
+3. React testing lib uses `act` behind the scenes for you!
+
+4. To solve `act warnings`, you should use a `findBy`. USALLY you don't want to follow the advice of the warning!
+
 </details>
