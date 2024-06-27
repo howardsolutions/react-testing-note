@@ -528,4 +528,24 @@ For example: screen.findBy... , screen.findAllBy... , waitFor, user.click, user.
 2. SLOW! Data might CHANGE!
 
 3. We FAKE (MOCK) data fetching in TESTS
-   <deatails>
+<details>
+
+### Options for Data Fetching
+
+<details> 
+  <summary>Open to Read ✅</summary>
+
+1. Mock the file that contains the data fetching code <br />
+   👉 Convinience, Easier to test, We dont have to understand what the Hook (function fetch the data from API) does
+
+   👉 Downside: Interaction between the hook + component is UNTESTED. Who knows if we're using the hook correctly
+
+2. Use a library to "MOCK" Axios (fetch) - get axios to return fake data
+
+   👉 Very popular technique, using `msw` lib.
+
+3. Create a manual mock for axios
+
+Mock = make a FAKE copy
+
+<details>
