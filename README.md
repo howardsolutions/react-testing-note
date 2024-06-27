@@ -549,3 +549,20 @@ For example: screen.findBy... , screen.findAllBy... , waitFor, user.click, user.
 Mock = make a FAKE copy
 
 <details>
+
+### MSW Setup
+
+<details> 
+  <summary>Open to Read ✅</summary>
+
+- Create a test file
+
+- Understand the exact URL, method, and the return value of requests that your component will make
+
+- Create a MSW handler to intercept that request, return some fake data for your component to use.
+
+- Set up beforeAll, beforeEach, and afterAll hooks in your test file.
+
+- In a test, render the component. Wait for an element to be visible.
+
+<details>
