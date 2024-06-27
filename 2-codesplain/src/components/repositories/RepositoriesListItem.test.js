@@ -2,6 +2,13 @@ import { screen, render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import RepositoriesListItem from './RepositoriesListItem';
 
+jest.mock('../tree/FileIcon.js', () => {
+  // Content of FileIcon.js
+  return () => {
+    return 'File Icon Component';
+  };
+});
+
 function renderComponent() {
   const repository = {
     full_name: 'fake facebook',
@@ -34,3 +41,11 @@ describe('<RepositoriesListItem />', () => {
     await screen.findByRole('img', { name: 'Python' });
   });
 });
+
+// When using module Mocking - it's terrible technique but it worked! :v
+// // the fileIcon Component causing the issue, we skipped importing that component!
+// describe('<RepositoriesListItem />', () => {
+//   test('shows a link to the github homepage for this repository', async () => {
+//     renderComponent();
+//   });
+// });
