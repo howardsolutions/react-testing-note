@@ -1,6 +1,6 @@
 # React Testing Library and Jest Notes
 
-## Test Writing Process
+## 1️⃣ Test Writing Process
 
 1. Pick one component to test all by itself
 
@@ -12,7 +12,9 @@
 
 5. Run tests at the command line
 
-## The Element Query System
+## 2️⃣ The Element Query System
+
+<details>
 
 There is NO browser involved when you run test.
 
@@ -36,7 +38,9 @@ The React Testing Lib Query system is a collection of around 48 methods are used
 
 We don't need to memorize all of them.
 
-## ARIA Role
+</details>
+
+## 3️⃣ ARIA Role
 
 - ARIA roles CLARIFY the PURPOSE of an HTML Element
 
@@ -72,8 +76,9 @@ th => Role: columnheader
 
 td => role: cell
 
-## Mocking Functions
+## 4️⃣ Mocking Functions
 
+<details>
 - In english, 'mock' equal 'NOT REAL'
 
 - Fake function that DOESN"T do ANYTHING
@@ -81,6 +86,8 @@ td => role: cell
 - Records WHENEVER it gets called, and the `arguments` it was called with.
 
 - Used VERY OFTEN when we need to make sure a Component CALLS a callback!
+
+</details>
 
 Example:
 
@@ -99,7 +106,7 @@ expect(mock).toHaveBeenCalledWith({
 // and expect to be called with appropriate arguments.
 ```
 
-## Querying Elements by Labels
+## 🔵 Querying Elements by Labels
 
 ```html
 <label htmlFor="email">Enter your Email</label> <input id="email" />
@@ -114,7 +121,7 @@ expect(mock).toHaveBeenCalledWith({
 `screen.getByLabelText(/enter your email/i)` <br />
 `screen.getByRole('textbox', {name: /enter your email/i})`
 
-## Getting Help with Query Functions
+## 🔵 Getting Help with Query Functions
 
 - The Problem: Memorizing ALL the query functions to Find Elements + Roles is HARD
 
@@ -126,7 +133,7 @@ expect(mock).toHaveBeenCalledWith({
 
 - Testing Playground will recommend the queries (function to find elements)
 
-## Query Function Escape Hatches
+## Query Function Escape Hatches 🤯
 
 - Sometimes, finding elements by ROLE (prefer approach) JUST DOEN"T WORK WELL!
 
@@ -177,7 +184,7 @@ test('find elements based on label', () => {
 });
 ```
 
-## Query Functions
+## 🌟 Query Functions
 
 ### Looking for a SINGLE Element? ==> Use: getBy, queryBy, findBy
 
@@ -257,9 +264,9 @@ test('getAllBy, queryAllBy, findAllBy', async () => {
 });
 ```
 
-### WHEN to use Each?
+## 🙋‍♂️ WHEN to use Each?
 
-- Prove an element exists => Use: getBy, getAllBy
+### 👉 Prove an element exists => Use: getBy, getAllBy
 
 Because when cannot get the element, these functions will throw an error, test will fail.
 
@@ -273,7 +280,7 @@ test('favor using getBy to prove an element exists', () => {
 });
 ```
 
-- Prove an element DOES NOT exist => Use: queryBy, queryAllBy
+### 👉 Prove an element DOES NOT exist => Use: queryBy, queryAllBy
 
 ```js
 test('favor using queryBy to prove an element does NOT exists', () => {
@@ -286,7 +293,7 @@ test('favor using queryBy to prove an element does NOT exists', () => {
 });
 ```
 
-- Make sure an element eventually exists => Use: findBy, findAllBy (ASYNC Querries)
+### 👉 Make sure an element eventually exists => Use: findBy, findAllBy (ASYNC Querries)
 
 ### Code Example:
 
@@ -326,7 +333,7 @@ test('favor findBy or findAllBy when data fetching - waiting for some elements t
 });
 ```
 
-## Write Custom Matcher
+## 5️⃣ Write Custom Matcher
 
 ### Code Example:
 
@@ -414,7 +421,7 @@ test('the form displays two buttons', () => {
 
 </details>
 
-## A Process for Debugging
+## 🐛 A Process for Debugging
 
 ## Overall - The Bug Fixing Process
 
@@ -457,11 +464,11 @@ test('the form displays two buttons', () => {
 4. Watch network request log and inspect the API response
 </details>
 
-## Act() Warnings
+## 🚨 Act() Warnings
 
 - Little frustrating because you need to understand 3-4 different topics to understand the warning.
 
-- Will occur frequently if you're doing DATA FETCHING in useEffect.
+- <strong> Will occur frequently if you're doing DATA FETCHING in useEffect. </strong>
 
 ### Important Items to understand Act() warnings
 
@@ -474,6 +481,29 @@ test('the form displays two buttons', () => {
 
 3. React testing lib uses `act` behind the scenes for you!
 
+For example: screen.findBy... , screen.findAllBy... , waitFor, user.click, user.keyboard
+
+=> This is the PREFERRED way of using `act` when using RTL. These methods will AUTOMATICALLY call `act` for you!
+
 4. To solve `act warnings`, you should use a `findBy`. USALLY you don't want to follow the advice of the warning!
+
+- When you see an `act` warning, you almost always DON'T WANT TO ADD an `act` to your test.
+
+- The message says you SHOULD, DON'T DO IT. Just get the context where the error occurred, and move on!
+
+- Instead, we will use one of RTL's functions instead!
+</details>
+
+### Options for Solving Act Warnings
+
+<details>
+
+1 - Use `findBy` or `findAllBy` to DETECT WHEN the component has FINSHED its data fetching! (BEST WAY)
+
+2 - Use an `act` to control WHEN the data-fetching request gets RESOLVED.
+
+3 - Use a module mock to avoid rendering in troublesome component!
+
+4 - Use an `act` with a `pause` (WORST!)
 
 </details>
