@@ -464,6 +464,16 @@ test('the form displays two buttons', () => {
 4. Watch network request log and inspect the API response
 </details>
 
+## Three Of the HARDEST ASPECTS of TESTING
+
+### 1) Module Mocks
+
+### 2) Navigation
+
+### 3) 'Act' function
+
+### 4) - I added my own take - is test DATA Fetching
+
 ## 🚨 Act() Warnings
 
 - Little frustrating because you need to understand 3-4 different topics to understand the warning.
@@ -507,3 +517,15 @@ For example: screen.findBy... , screen.findAllBy... , waitFor, user.click, user.
 4 - Use an `act` with a `pause` (WORST!)
 
 </details>
+
+## Data Fetching in Tests
+
+<details> 
+  <summary>Open to Read ✅</summary>
+
+1. We dont want our Components to make ACTUAL NETWORK REQUESTS
+
+2. SLOW! Data might CHANGE!
+
+3. We FAKE (MOCK) data fetching in TESTS
+   <deatails>
