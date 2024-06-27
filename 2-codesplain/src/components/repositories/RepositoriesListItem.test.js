@@ -1,13 +1,15 @@
-import { screen, render } from '@testing-library/react';
+import { screen, render, act } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import RepositoriesListItem from './RepositoriesListItem';
 
+/*
 jest.mock('../tree/FileIcon.js', () => {
   // Content of FileIcon.js
   return () => {
     return 'File Icon Component';
   };
 });
+*/
 
 function renderComponent() {
   const repository = {
@@ -34,13 +36,13 @@ const pause = () => {
   });
 };
 
-describe('<RepositoriesListItem />', () => {
-  test('shows a link to the github homepage for this repository', async () => {
-    renderComponent();
+// describe('<RepositoriesListItem />', () => {
+//   test('shows a link to the github homepage for this repository', async () => {
+//     renderComponent();
 
-    await screen.findByRole('img', { name: 'Python' });
-  });
-});
+//     await screen.findByRole('img', { name: 'Python' });
+//   });
+// });
 
 // When using module Mocking - it's terrible technique but it worked! :v
 // // the fileIcon Component causing the issue, we skipped importing that component!
@@ -49,3 +51,17 @@ describe('<RepositoriesListItem />', () => {
 //     renderComponent();
 //   });
 // });
+
+// Example with using act function
+/*
+describe('<RepositoriesListItem />', () => {
+  test('shows a link to the github homepage for this repository', async () => {
+    renderComponent();
+
+    await act(async () => {
+      await pause();
+    });
+  });
+});
+
+*/
