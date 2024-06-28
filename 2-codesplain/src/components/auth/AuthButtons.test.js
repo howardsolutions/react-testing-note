@@ -79,6 +79,7 @@ async function renderComponent() {
   await screen.findAllByRole('link');
 }
 
+// HELPER
 function pause() {
   return new Promise((resolve) => {
     return setTimeout(resolve, 100);
