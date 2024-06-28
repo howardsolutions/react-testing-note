@@ -528,7 +528,7 @@ For example: screen.findBy... , screen.findAllBy... , waitFor, user.click, user.
 2. SLOW! Data might CHANGE!
 
 3. We FAKE (MOCK) data fetching in TESTS
-<details>
+</details>
 
 ### Options for Data Fetching
 
@@ -548,7 +548,7 @@ For example: screen.findBy... , screen.findAllBy... , waitFor, user.click, user.
 
 Mock = make a FAKE copy
 
-<details>
+</details>
 
 ### MSW Setup
 
@@ -565,4 +565,4 @@ Mock = make a FAKE copy
 
 - In a test, render the component. Wait for an element to be visible.
 
-<details>
+</details>
