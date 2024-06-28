@@ -3,6 +3,7 @@ import { MemoryRouter } from 'react-router';
 
 import { createServer } from '../../test/server';
 import AuthButtons from './AuthButtons';
+import { SWRConfig } from 'swr';
 
 // createServer => GET api/user => {user: null}
 describe('<AuthButtons /> --> When USER is NOT SIGNED IN', function () {
@@ -38,8 +39,17 @@ describe('<AuthButtons /> --> When USER is NOT SIGNED IN', function () {
 
 // createServer => GET api/user => {user: {id: 3, email: "foo@email.com"}
 describe('<AuthButtons /> --> When USER is SIGNED IN', function () {
+  createServer([
+    {
+      path: '/api/user',
+      res: (req, res, ctx) => {
+        return { user: { id: 3, email: 'hihi@gmail.com' } };
+      },
+    },
+  ]);
+
   test('sign In and Sign Up btns are NOT visble', async function () {
-    renderComponent();
+    await renderComponent();
 
     const signInButton = screen.queryByRole('link', { name: /sign in/i });
     const signUpButton = screen.queryByRole('link', { name: /sign up/i });
@@ -49,7 +59,7 @@ describe('<AuthButtons /> --> When USER is SIGNED IN', function () {
   });
 
   test('Sign Out IS VISIBLE', async function () {
-    renderComponent();
+    await renderComponent();
     const signOutButton = screen.getByRole('link', { name: /sign out/i });
 
     expect(signOutButton).toBeInTheDocument();
@@ -59,9 +69,11 @@ describe('<AuthButtons /> --> When USER is SIGNED IN', function () {
 
 async function renderComponent() {
   render(
-    <MemoryRouter>
-      <AuthButtons />
-    </MemoryRouter>
+    <SWRConfig value={{ provider: () => new Map() }}>
+      <MemoryRouter>
+        <AuthButtons />
+      </MemoryRouter>
+    </SWRConfig>
   );
 
   await screen.findAllByRole('link');
