@@ -598,4 +598,4 @@ Mock = make a FAKE copy
 
 - Use `describe` block to create a testing scope
 
-- all the testing hooks like: beforeEach, afterEach, beforeAll, afterAll get called at TOP LEVEL OF a file. When called inside a test block, they ONLY APPLY inside that test block!
+- all the testing hooks like: beforeEach, afterEach, beforeAll, afterAll get called at TOP LEVEL OF a file. When called inside a test block, they ONLY APPLY to the tests inside that test block!
