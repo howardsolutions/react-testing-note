@@ -566,3 +566,36 @@ Mock = make a FAKE copy
 - In a test, render the component. Wait for an element to be visible.
 
 </details>
+
+### Issue with Fake Handler
+
+<details>
+  - Common Pattern you will see - handlers defined in ONE place, used by SEVERAL TESTS.
+  
+  * DOWNSIDE: If all handlers are defined in the same place, then ALL TESTS will be locked into getting the SAME responses.
+
+- IF we have NEW component that we WANT to test - we might want this to get a Completely Different response from the FAKE ROUTE
+
+=> turns out, we need some kind of abstraction, for user to flexible pass in the response they want that can adjusted accordingly to the test case.
+
+</details>
+
+## Order of Execution in a test
+
+<details> 
+  <summary>Open to Read ✅</summary>
+
+`test("Some test title", async () => {})`
+
+- Whenever jest runs one of your test files,
+  It's going to RUN ALL the code at the TOP LEVEL.
+
+- It's NOT going to immediately execute your test functions just yet. It's going to COLLECT all of your tests.
+
+</details>
+
+## Test Scoping (nesting)
+
+- Use `describe` block to create a testing scope
+
+- all the testing hooks like: beforeEach, afterEach, beforeAll, afterAll get called at TOP LEVEL OF a file. When called inside a test block, they ONLY APPLY inside that test block!
