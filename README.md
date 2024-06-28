@@ -599,3 +599,32 @@ Mock = make a FAKE copy
 - Use `describe` block to create a testing scope
 
 - all the testing hooks like: beforeEach, afterEach, beforeAll, afterAll get called at TOP LEVEL OF a file. When called inside a test block, they ONLY APPLY to the tests inside that test block!
+
+## Options for Debugging Tests
+
+<details>
+  <summary>Open to Read ✅</summary>
+  
+1) use `test.only` or `describe.only` to LIMIT the number of tests executed
+
+2. Set up a debugger
+
+3. classic Console.log
+</details>
+
+### Setting Up a test Debugger
+
+<details>
+  <summary>Open to Read ✅</summary>
+  
+1 - add this script to package.json `test:debug: react-scripts --inspect-brk test --runInBand --no-cache`
+
+2 - add a `debugger` statement somewhere in ur tests or components
+
+3 - use `test.only` or `describe.only` to LIMIT the number of tests executed
+
+4 - run the above script command
+
+5 - Navigate to `about:inspect` in your browser
+
+</details>
